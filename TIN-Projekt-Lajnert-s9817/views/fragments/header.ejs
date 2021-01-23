@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubezpieszczenia PJA</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script type="application/javascript" src="/JS/validationCommon.js"></script>
+</head>
+<body>
+    <header>
+    <h1>Ubezpieszczenia PJA</h1>
+    <img src="/images/logo.jpg" alt="LOGO PJA Ubezpieczenia">
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Strona głowna</a></li>
+            <li><a href="/klient" class="<%= navLocation == 'klient' ? 'active' : ''%>">Klienci</a></li>
+            <li><a href="/samochod" class="<%= navLocation == 'samochod' ? 'active' : ''%>">Samochody</a></li>
+            <li><a href="/polisa" class="<%= navLocation == 'polisa' ? 'active' : ''%>" >Polisy</a></li>
+        </ul>
+    </nav>

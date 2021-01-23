@@ -1,0 +1,41 @@
+<%- include('../../fragments/header.ejs') %>
+    <main>
+        <h2>Lista polis</h2>
+        <table class="table-list">
+        <thead>
+            <tr>
+                <th>Nazwa Klienta</th>
+                <th>Numer Rejestracyjny</th>
+                <th>Polisa od</th>
+                <th>Polisa do</th>
+                <th>Akcja</th>
+            </tr>
+        </thead>
+            <tbody>
+                <% for (let polisy of polisa) { %>
+    <tr>
+        <td><%= polisy.klient.nazwaKlienta %></td>
+        <td><%= polisy.samochod.numerRej %></td>
+        <td><%= polisy.ochronaOd.toISOString().split('T')[0]%></td>
+        <td><%= polisy.ochronaDo.toISOString().split('T')[0] %></td>
+        
+        <td>
+            <ul class="list-actions">
+                <li>
+                    <a href="/polisa/details/<%= polisy._id %>" class="list-actions-button-details">Szczegóły</a>
+                </li>
+                <li>
+                    <a href="/polisa/edit/<%= polisy._id %>" class="list-actions-button-edit">Edytuj</a>
+                </li>
+                <li>
+                    <a href="/polisa/delete/<%= polisy._id %>" class="list-actions-button-delete">Usuń</a>
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <% } %>
+</tbody>
+        </table>
+        <p><a href="/polisa/add" class="button-add">Dodaj polisę</a></p>
+    </main>
+<%- include('../../fragments/footer.ejs') %>

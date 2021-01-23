@@ -1,0 +1,146 @@
+<%- include('../../fragments/header.ejs') %>
+<script type="application/javascript" src="/JS/validationPolisa.js"></script>
+    <main>
+    <h2><%= pageTitle %></h2>
+        <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateFormPolisa();">
+
+            <input type="hidden" name="_id" value="<%= polisa._id %>">
+            
+                <label for="IdKlienta">Klient: <abbr title="required" aria-label="required">*</abbr></label>
+                <select id="klient_id" name="klient_id" required <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('klient_id')) ? 'error-input' : '' %>" > 
+                    <% if (formMode ==  'showDetails' || formMode ==  'edit') { %>
+                        <option label="<%= polisa.klient.nazwaKlienta %>"></option>
+                        <% if (formMode ==  'edit'){ %>
+                            <% for (let i=0; i<allKlient.length; i++) { let klient = allKlient[i]; %>
+                                <option value="<%= klient._id %>" label="<%= klient.nazwaKlienta %>"
+                                    <%= (polisa._id && klient._id.toString() == polisa.klient._id.toString()) ? 'selected' : ''%>></option>
+                            <% }} %>
+                    <% } else{%>
+                    <option value="" selected>--- Wybierz klienta ---</option>
+                    <% for (let i=0; i<allKlient.length; i++) { let klient = allKlient[i]; %>
+                        <option value="<%= klient._id %>" label="<%= klient.nazwaKlienta %>"
+                            <%= (polisa._id && klient._id.toString() == polisa.klient._id.toString()) ? 'selected' : ''%>></option>
+                    <% }} %>
+                </select>
+                <span id="errorKlient_id" class="errors-text">
+                    <% if (validationErrors.find(e => e.path.includes('klient_id'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('klient_id')).message %>
+                    <% } %>
+                </span>  
+                
+                <label for="IdSamochod">Samochod: <abbr title="required" aria-label="required">*</abbr></label>
+                <select id="samochod_id" name="samochod_id" required <%= (formMode == 'showDetails') ? 'disabled' : ''%> class="<%= validationErrors.find(e => e.path.includes('samochod_id')) ? 'error-input' : '' %>">
+                    <% if (formMode ==  'showDetails' || formMode ==  'edit') { %>
+                        <option label="<%= polisa.samochod.numerRej %>"></option>
+                        <% if (formMode ==  'edit'){ %>
+                            <% for (let i=0; i<allSamochod.length; i++) { let samochod = allSamochod[i]; %>
+                                <option value="<%= samochod._id %>" label="<%= samochod.numerRej %>"
+                                    <%= (polisa._id && samochod._id.toString() == polisa.samochod._id.toString()) ? 'selected' : ''%>></option>
+                            <% }} %>
+                    <% } else{%>
+                    <option value="" selected>--- Wybierz samochod ---</option>
+                    <% for (let i=0; i<allSamochod.length; i++) { let samochod = allSamochod[i]; %>
+                        <option value="<%= samochod._id %>" label="<%= samochod.numerRej %>"
+                            <%= (polisa._id && samochod._id.toString() == polisa.samochod._id.toString()) ? 'selected' : ''%>></option>
+                    <% }} %>
+                </select>
+                <span id="errorSamochod_id" class="errors-text">
+                    <% if (validationErrors.find(e => e.path.includes('samochod_id'))) { %>
+                        <%= validationErrors.find(e => e.path.includes('samochod_id')).message %>
+                    <% } %>
+                </span>  
+                
+                    <label for="numerPolisy">Numer polisy:<abbr title="required" aria-label="required">*</abbr></label>
+                    <input type="text" name="numerPolisy" id="numerPolisy" placeholder="PZU00001 (5-25 znaków)" value="<%= polisa.numerPolisy %>" 
+                    <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('numerPolisy')) ? 'error-input' : '' %>"/>
+                    <span id="errorNumerPolisy" class="errors-text">
+                        <% if (validationErrors.find(e => e.path.includes('numerPolisy'))) { %>
+                            <%= validationErrors.find(e => e.path.includes('numerPolisy')).message %>
+                        <% } %>
+                    </span>  
+                
+                   
+                    <label for="dataOd">Ochrona od: <abbr title="required" aria-label="required">*</abbr></label>
+                    <input type="date" name="ochronaOd" id="ochronaOd"  placeholder="2-60 znaków" value="<%= (formMode=='createNew') ? '': polisa.ochronaOd.toISOString().split('T')[0] %>"
+                    <%=(formMode=='showDetails' ) ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('ochronaOd')) ? 'error-input' : '' %>"/>
+                    <span id="errorDataOd" class="errors-text">
+                        <% if (validationErrors.find(e => e.path.includes('ochronaOd'))) { %>
+                            <%= validationErrors.find(e => e.path.includes('ochronaOd')).message %>
+                        <% } %>
+                    </span> 
+                
+                    <label for="dataDo">Ochrona do: <abbr title="required" aria-label="required">*</abbr></label>
+                    <input type="date" name="ochronaDo" id="ochronaDo"  placeholder="2-60 znaków" value="<%= (formMode=='createNew') ? '': polisa.ochronaDo.toISOString().split('T')[0] %>"
+                    <%=(formMode=='showDetails' ) ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('ochronaDo')) ? 'error-input' : '' %>"/>
+                    <span id="errorDataDo" class="errors-text">
+                        <% if (validationErrors.find(e => e.path.includes('ochronaDo'))) { %>
+                            <%= validationErrors.find(e => e.path.includes('ochronaDo')).message %>
+                        <% } %>
+                    </span> 
+                
+                    <label for="tu">TU:</label>
+                    <input type="text" name="tu" id="tu"  placeholder="2-30 znaków" value="<%= polisa.tu %>" 
+                    <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('tu')) ? 'error-input' : '' %>"/>
+                    <span id="errorTU" class="errors-text">
+                        <% if (validationErrors.find(e => e.path.includes('tu'))) { %>
+                            <%= validationErrors.find(e => e.path.includes('tu')).message %>
+                        <% } %>
+                    </span> 
+                
+                    <label for="Ryzyka">Ryzyka:</label>
+                    <input type="text" name="ryzyka" id="ac" value="<%= polisa.ryzyka %> " 
+                    <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('ac')) ? 'error-input' : '' %>"/>  
+                    <span id="errorAc" class="errors-text">
+                        <% if (validationErrors.find(e => e.path.includes('ac'))) { %>
+                            <%= validationErrors.find(e => e.path.includes('ac')).message %>
+                        <% } %>
+                    </span> 
+
+                    <label for="skladka">Składka:<abbr title="required" aria-label="required">*</abbr></label>
+                    <input type="text" name="skladka" id="skladka" value="<%= polisa.skladka %>" 
+                    <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('skladka')) ? 'error-input' : '' %>"/>   
+                    <span id="errorSkladka" class="errors-text">
+                        <% if (validationErrors.find(e => e.path.includes('skladka'))) { %>
+                            <%= validationErrors.find(e => e.path.includes('skladka')).message %>
+                        <% } %>
+                    </span> 
+
+                    <label for="sumaUbezpieczenia">Suma ubezpieczenia:<abbr title="required" aria-label="required">*</abbr></label>
+                    <input type="text" name="sumaUbezpieczenia" id="sumaUbezpieczenia" value="<%= polisa.sumaUbezpieczenia %>" 
+                    <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('sumaUbezpieczenia')) ? 'error-input' : '' %>"/>  
+                    <span id="errorSumaUbezpieczenia" class="errors-text">
+                        <% if (validationErrors.find(e => e.path.includes('sumaUbezpieczenia'))) { %>
+                            <%= validationErrors.find(e => e.path.includes('sumaUbezpieczenia')).message %>
+                        <% } %>
+                    </span> 
+
+                    <label for="waluta">Waluta:<abbr title="required" aria-label="required">*</abbr></label>
+                    <input type="text" name="waluta" id="waluta" value="<%= polisa.waluta %>" 
+                    <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('waluta')) ? 'error-input' : '' %>"/>   
+                    <span id="errorWaluta" class="errors-text">
+                        <% if (validationErrors.find(e => e.path.includes('waluta'))) { %>
+                            <%= validationErrors.find(e => e.path.includes('waluta')).message %>
+                        <% } %>
+                    </span> 
+
+                
+
+                <% if (formMode == 'showDetails') { %>
+                    <div class="form-buttons">   
+                        <a href="/polisa/edit/<%= polisa._id %>" class="list-action-button-edit-info">Edytuj</a>
+                    </div>
+                <% } %>
+
+                <div class="form-buttons">
+                    <p id="errorsSummary" class="errors-text"></p>
+                    <% if (formMode != 'showDetails') { %>
+                        <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                        <a class="form-button-cancel" href="/polisa">Anuluj</a>
+                    <% } else { %>
+                        <a class="form-button-cancel" href="/polisa">Powrót</a>
+                    <% } %>
+                </div>
+        </form>
+    
+    </main>
+<%- include('../../fragments/footer.ejs') %>

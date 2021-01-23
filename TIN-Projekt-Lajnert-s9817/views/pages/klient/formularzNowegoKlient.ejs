@@ -1,0 +1,147 @@
+<%- include('../../fragments/header.ejs') %>
+<script type="application/javascript" src="/JS/validationForm.js"></script>
+    <main>
+    <h2><%= pageTitle %></h2>
+    <form class="form" method="post" action="<%=formAction%>" novalidate onsubmit="return validateForm();">
+       
+        <input type="hidden" name="_id" value="<%= klient._id %>">
+        
+    
+        <label for="nazwaKlienta">Nazwa klienta:<abbr title="required" aria-label="required">*</abbr></label>
+        <input type="text" name="nazwaKlienta" id="nazwaKlienta" placeholder="PJWSTK" value="<%= klient.nazwaKlienta %>" 
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('nazwaKlienta')) ? 'error-input' : '' %>"/>
+        <span id="errorNazwaKlienta" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('nazwaKlienta'))) { %>
+                <%= validationErrors.find(e => e.path.includes('nazwaKlienta')).message %>
+            <% } %>
+        </span>  
+    
+
+        <label for="NIP">NIP:</label>
+        <input type="text" name="nip" id="nip" value="<%= klient.nip %>" 
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('nip')) ? 'error-input' : '' %>"/>
+        <span id="errorNip" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('nip'))) { %>
+                <%= validationErrors.find(e => e.path.includes('nip')).message %>
+            <% } %>
+        </span>     
+    
+    
+        <label for="PESEL">PESEL:</label>
+        <input type="text" name="pesel" id="pesel" value="<%= klient.pesel %>" 
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('pesel')) ? 'error-input' : '' %>"/>  
+        <span id="errorPesel" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('pesel'))) { %>
+                <%= validationErrors.find(e => e.path.includes('pesel')).message %>
+            <% } %>
+        </span>   
+   
+        <label for="e-mail">e-mail:<abbr title="required" aria-label="required">*</abbr></label>
+        <input type="email" name="email" id="email" placeholder="nazwa@domena.pl" value="<%= klient.email %>" 
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('email')) ? 'error-input' : '' %>"/> 
+        <span id="errorEmail" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('email'))) { %>
+                <%= validationErrors.find(e => e.path.includes('email')).message %>
+            <% } %>
+        </span>  
+   
+        <label for="tel">Telefon:</label>
+        <input type="text" name="telefon" id="telefon" value="<%= klient.telefon %>" 
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('telefon')) ? 'error-input' : '' %>"/>  
+        <span id="errorTelefon" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('telefon'))) { %>
+                <%= validationErrors.find(e => e.path.includes('telefon')).message %>
+            <% } %>
+        </span>   
+
+
+        <label for="miasto">Miasto:</label>
+        <input type="text" name="miasto" id="miasto" value="<%= klient.miasto %>" 
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('miasto')) ? 'error-input' : '' %>"/> 
+        <span id="errorMiasto" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('miasto'))) { %>
+                <%= validationErrors.find(e => e.path.includes('miasto')).message %>
+            <% } %>
+        </span>   
+
+        <label for="kod">Kod pocztowy:</label>
+        <input type="text" name="kodPocztowy" id="kodPocztowy" value="<%= klient.kodPocztowy %>" 
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('kod')) ? 'error-input' : '' %>"/>  
+        <span id="errorKodPocztowy" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('kodPocztowy'))) { %>
+                <%= validationErrors.find(e => e.path.includes('kodPocztowy')).message %>
+            <% } %>
+        </span>   
+
+        <label for="ulica">Ulica:</label>
+        <input type="text" name="ulica" id="ulica" value="<%= klient.ulica %>" 
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('ulica')) ? 'error-input' : '' %>"/> 
+        <span id="errorUlica" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('ulica'))) { %>
+                <%= validationErrors.find(e => e.path.includes('ulica')).message %>
+            <% } %>
+        </span>   
+
+        <label for="numer">Numer:</label>
+        <input type="text" name="numerDomu" id="numerDomu" value="<%= klient.numerDomu %>" 
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('numer')) ? 'error-input' : '' %>"/>   
+        <span id="errorNumerDomu" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('numerDomu'))) { %>
+                <%= validationErrors.find(e => e.path.includes('numerDomu')).message %>
+            <% } %>
+        </span>   
+
+        <label for="mieszkanie">Mieszkanie:</label>
+        <input type="text" name="numerMieszkania" id="numerMieszkania" value="<%= klient.numerMieszkania %>" 
+        <%= (formMode == 'showDetails') ? 'disabled' : '' %> class="<%= validationErrors.find(e => e.path.includes('mieszkanie')) ? 'error-input' : '' %>"/> 
+        <span id="errorNumerMieszkania" class="errors-text">
+            <% if (validationErrors.find(e => e.path.includes('numerMieszkania'))) { %>
+                <%= validationErrors.find(e => e.path.includes('numerMieszkania')).message %>
+            <% } %>
+        </span>   
+
+
+            <% if (formMode == 'showDetails') { %>
+                <div class="form-buttons">   
+                    <a href="/klient/edit/<%= klient._id %>" class="list-action-button-edit-info">Edytuj</a>
+                </div>
+            <% } %>
+
+
+            
+            <div class="form-buttons">
+                <p id="errorsSummary" class="errors-text"></p>
+                <% if (formMode != 'showDetails') { %>
+                    <input class="form-button-submit" type="submit" value="<%=btnLabel%>" />
+                    <a class="form-button-cancel" href="/klient">Anuluj</a>
+                <% } else { %>
+                    <a class="form-button-cancel" href="/klient">Powrót</a>
+                <% } %>
+            </div>
+     </form>
+
+    <% if (formMode == 'showDetails') { %>
+        <h2>
+            Szczegóły wypozyczenia
+        </h2>
+        <table class="table-list">
+            <thead>
+            <tr>
+                <th>Samochod</th>
+                <th>Numer Polisy</th>
+                <th>Model</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% for (let st of klient.polisa) { %>
+                    <tr>
+                        <td><a href="/samochod/details/<%= st.samochod._id %>"><%= st.samochod.numerRej %></a></td>
+                        <td><%= st.ochronaOd.toISOString().split('T')[0] %></td>
+                        <td><%= st.ochronaDo ? st.ochronaDo.toISOString().split('T')[0] : '' %></td>
+                    </tr>
+                <% } %>
+                </tbody>
+        </table>
+        <% } %>
+    </main>
+<%- include('../../fragments/footer.ejs') %>
