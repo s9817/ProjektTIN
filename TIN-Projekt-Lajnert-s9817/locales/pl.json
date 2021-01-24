@@ -1,0 +1,65 @@
+{
+	"main-page": {
+		"content": "Strona główna"
+	},
+	"nav": {
+		"main-page": "Strona główna",
+		"employees": "Klienci",
+		"departments": "Samochody",
+		"employments": "Polisy"
+	},
+    "list": {
+       "actions": {
+          "title": "Akcje",
+          "details": "Szczegóły",
+          "edit": "Edytuj",
+          "delete": "Usuń"
+       }
+    },
+   "form": {
+      "actions": {
+         "return": "Powrót",
+         "edit": "Edytuj",
+         "cancel": "Anuluj"
+      }
+   },
+	"klient": {
+		"fields": {
+			"nazwaKlienta": "Nazwa klienta",
+			"nip": "NIP",
+            "PESEL": "PESEL",
+            "email": "e-mail",
+            "tel": "Telefon",
+            "miasto": "Miasto",
+            "kod": "Kod pocztowy",
+            "ulica": "Ulica",
+            "numer": "Numer",
+            "mieszkanie": "Mieszkanie"
+		},
+		"list": {
+			"title": "Pracownicy",
+			"addNew": "Dodaj nowego pracownika",
+			"noData": "Brak pracowników w bazie",
+			"pageTitle": "Lista pracowników"
+		},
+		"form": {
+			"employment": "Historia zatrudnienia",
+			"add": {
+				"pageTitle": "Dodawanie pracownika",
+				"btnLabel": "Dodaj pracownika",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie dodano pracownika"
+				}
+			},
+			"edit": {
+				"pageTitle": "Edycja pracownika",
+				"btnLabel": "Zapisz zmiany",
+				"confirm": {
+					"header": "Potwierdzenie operacji",
+					"text": "Pomyślnie zaktualizowano pracownika"
+				}
+			}
+		}
+	}
+}

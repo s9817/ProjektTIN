@@ -1,7 +1,26 @@
 <%- include('./fragments/header.ejs') %>
     <main>
     <h2>Strona głowna</h2>
-    <h4>NAJCIEKAWSZE POLISY ŚWIATA</h4>
+    <% if(!loggedUser) { %>
+        <div id="login">
+            <h4>Logowanie</h4>
+            <form method="post" action="/login" novalidate>
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" name="email">
+
+                <label for="loginPassword">Hasło:</label>
+                <input type="password" id="loginPassword" name="password">
+
+                <input type="submit" value="Zaloguj">
+                <span id="loginErrors"><%= loginError ? loginError : ''%></span>
+            </form>
+        </div>
+    <% } else { %>
+        <span>Witaj: <%=loggedUser.nazwaKlienta + "!"%></span>
+        <a href="/logout">Wyloguj</a>
+    <% } %>
+
+    <h5>NAJCIEKAWSZE POLISY ŚWIATA</h5>
     <p>
         Ubezpieczyć można się prawie od wszystkiego, pod warunkiem, że znajdzie się towarzystwo ubezpieczeniowe, które ustali odpowiednie warunki w polisie. Dowodem na to są ciekawostki ubezpieczeniowe z całego świata.
 

@@ -5,9 +5,9 @@ const Samochod = require('../model/sequelize/Samochod');
 
 exports.showPolisaList = (req, res, next) => {
     PolisaRepository.getPolisa()
-        .then(polisa => {
+        .then(polisy => {
             res.render('pages/polisa/polisy-lista', {
-                polisa: polisa,
+                polisy: polisy,
                 navLocation: 'polisa'
             });
         });

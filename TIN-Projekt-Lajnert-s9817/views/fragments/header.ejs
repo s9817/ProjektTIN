@@ -16,8 +16,16 @@
     <nav>
         <ul>
             <li><a href="/" class="<%= navLocation == 'main' ? 'active' : ''%>">Strona głowna</a></li>
+            <% if(loggedUser) { %>
+                <% if(loggedUser.rola == "admin") { %>
             <li><a href="/klient" class="<%= navLocation == 'klient' ? 'active' : ''%>">Klienci</a></li>
+                <% } %>
+            <% } %>
+            <% if(loggedUser) { %>
             <li><a href="/samochod" class="<%= navLocation == 'samochod' ? 'active' : ''%>">Samochody</a></li>
+            <% } %>
+            <% if(loggedUser) { %>
             <li><a href="/polisa" class="<%= navLocation == 'polisa' ? 'active' : ''%>" >Polisy</a></li>
+            <% } %>
         </ul>
     </nav>

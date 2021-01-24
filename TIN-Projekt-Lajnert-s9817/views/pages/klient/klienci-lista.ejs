@@ -12,6 +12,7 @@
             <tbody>
                 <% for (let klient of klienci) { %>
     <tr>
+            
         <td><%= klient.nazwaKlienta %></td>
         <td><%= klient.email %></td>
         <td>
@@ -28,8 +29,7 @@
             </ul>
         </td>
     </tr>
-    
-    <% } %>
+                <% } %>
 </tbody>
         </table>
         <p><a href="/klient/add" class="button-add">Dodaj nowego klienta</a></p>

@@ -8,6 +8,10 @@ const Klient = sequelize.define('Klient',{
         allowNull: false,
         primaryKey: true,
     },
+    rola: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
     nazwaKlienta: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -16,6 +20,10 @@ const Klient = sequelize.define('Klient',{
                 msg: "Pole jest wymagane"
             },
         }
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false
     },
     nip: {
         type: Sequelize.STRING,

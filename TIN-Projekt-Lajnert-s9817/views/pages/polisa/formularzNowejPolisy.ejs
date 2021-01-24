@@ -126,9 +126,11 @@
                 
 
                 <% if (formMode == 'showDetails') { %>
+                    <% if(loggedUser.rola == "admin") { %>
                     <div class="form-buttons">   
                         <a href="/polisa/edit/<%= polisa._id %>" class="list-action-button-edit-info">Edytuj</a>
                     </div>
+                    <% } %>
                 <% } %>
 
                 <div class="form-buttons">

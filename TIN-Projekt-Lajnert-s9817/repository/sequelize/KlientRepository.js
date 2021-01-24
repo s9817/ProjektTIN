@@ -58,3 +58,9 @@ exports.deletegetKlient = (klientId) => {
     });
 
 };
+
+exports.findByEmail = (email) => {
+    return Klient.findOne({
+        where: {email: email}
+    });
+}

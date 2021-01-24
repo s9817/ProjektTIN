@@ -1,10 +1,11 @@
 const SamochodRepository = require('../repository/sequelize/SamochodRepository');
+const PolisaRepository = require('../repository/sequelize/PolisaRepository');
 
 exports.showSamochodList = (req, res, next) => {
-    SamochodRepository.getSamochod()
-        .then(samochody => {
+    PolisaRepository.getPolisa()
+        .then(polisy => {
             res.render('pages/Samochod/samochody-lista', {
-                samochody: samochody,
+                polisy: polisy,
                 navLocation: 'samochod'
             });
         });

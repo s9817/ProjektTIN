@@ -6,34 +6,62 @@
                     <tr>
                         <th>Numer rejestracyjny</th>
                         <th>Marka</th>
-                    
                         <th>Model</th>
                         <th>Akcja</th>
                         
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (let samochod of samochody) { %>
+                    <% if(loggedUser.rola == "klient") { %>
+                    <% for (let polisa of polisy) { %>
         <tr>
-            <td><%= samochod.numerRej %></td>
-            <td><%= samochod.marka %></td>
-            <td><%= samochod.model %></td>
+            <% if(loggedUser._id == polisa.klient._id) { %>
+            <td><%= polisa.samochod.numerRej %></td>
+            <td><%= polisa.samochod.marka %></td>
+            <td><%= polisa.samochod.model %></td>
             <td>
             <ul class="list-actions">
                 <li>
-                    <a href="/samochod/details/<%= samochod._id %>" class="list-actions-button-details">Szczegóły</a>
+                    <a href="/samochod/details/<%= polisa.samochod._id %>" class="list-actions-button-details">Szczegóły</a>
+                </li>
+                <% if(loggedUser.rola == "admin") { %>
+                <li>
+                    <a href="/samochod/edit/<%= polisa.samochod._id %>" class="list-actions-button-edit">Edytuj</a>
                 </li>
                 <li>
-                    <a href="/samochod/edit/<%= samochod._id %>" class="list-actions-button-edit">Edytuj</a>
+                    <a href="/samochod/delete/<%= polisa.samochod._id %>" class="list-actions-button-delete">Usuń</a>
                 </li>
-                <li>
-                    <a href="/samochod/delete/<%= samochod._id %>" class="list-actions-button-delete">Usuń</a>
-                </li>
-                
+                <% } %>
             </ul>
+            <% } %>
         </td>
     </tr>
     <% } %>   
+    <% } %>
+
+    <% if(loggedUser.rola == "admin") { %>
+        <% for (let polisa of polisy) { %>
+<tr>
+<td><%= polisa.samochod.numerRej %></td>
+<td><%= polisa.samochod.marka %></td>
+<td><%= polisa.samochod.model %></td>
+<td>
+<ul class="list-actions">
+    <li>
+        <a href="/samochod/details/<%= polisa.samochod._id %>" class="list-actions-button-details">Szczegóły</a>
+    </li>
+    <li>
+        <a href="/samochod/edit/<%= polisa.samochod._id %>" class="list-actions-button-edit">Edytuj</a>
+    </li>
+    <li>
+        <a href="/samochod/delete/<%= polisa.samochod._id %>" class="list-actions-button-delete">Usuń</a>
+    </li>
+    
+</ul>
+</td>
+</tr>
+    <% } %>   
+    <% } %>
 </tbody>
         </table>
         
